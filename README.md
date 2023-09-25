@@ -13,4 +13,4 @@
   
 # Diagrama de Entidad - Relacion (DER):
 
-![image](imagen_2023-09-25_170536287.png)
+![image](DER.jpeg)
