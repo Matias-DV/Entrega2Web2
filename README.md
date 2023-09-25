@@ -12,3 +12,5 @@
   Nuestra pagina se basara en busqueda de libros y autores mediante diferentes tipos de filtros, va a contar con una seccion de libros favoritos que el usuario quiera tener siempre presente.
   
 # Diagrama de Entidad - Relacion (DER):
+
+![image](imagen_2023-09-25_170536287.png)
