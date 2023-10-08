@@ -1,0 +1,21 @@
+<?php require 'templates/header.phtml' ?>
+<ul class="list-group">
+<?php foreach($libros as $libro): ?>
+    <li class="list-group-item item-task">
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><? $libro->nombre ?></h5> 
+                <p class="card-text"><? $libro->autor?></p> 
+                <p class="card-text"><? $libro->genero?></p> 
+                <p class="card-text"><? $libro->editorial?></p> 
+                <a href="libro/<? $libro->id ?>" class="btn btn-primary">Ver Libro</a> <!-- aca van los links que manda a mirar a un este libro en especifico -->
+            </div>
+        </div>
+    </li>
+<?php endforeach ?>
+</ul>
+
+
+<?php require 'templates/footer.phtml' ?>
+

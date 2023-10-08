@@ -14,6 +14,7 @@ $params = explode('/', $action);
 switch ($params[0]) { 
     case 'libros':
         if (isset($params[1]))
+            $controller = new LibroController();
             showLibros($params[1]);
         else 
             showLibros();

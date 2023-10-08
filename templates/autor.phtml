@@ -1,0 +1,20 @@
+<?php require 'templates/header.phtml' ?>
+
+<ul class="list-group">
+<?php foreach($autores as $autor): ?>
+    <li class="list-group-item item-task">
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><? $autor->nombre ?> <? $autor->apellido ?> </h5> <!-- aca van los nombres de los libros -->
+                <p class="card-text"><? $autor->edad ?></p>
+                <p class="card-text"><? $autor->nacionalidad ?></p>
+                <a href="autores/<? $autor->id ?>" class="btn btn-primary">Ver Listado de libros de este autor</a> <!-- aca van los links que manda a mirar a un este libro en especifico -->
+            </div>
+        </div>
+    </li>
+<?php endforeach ?>
+</ul>
+
+
+<?php require 'templates/footer.phtml' ?>
