@@ -1,6 +1,6 @@
 <?php 
     class AutorView {
-        public function showAutor(){
+        public function showAutor($autores){
             require 'templates/autor.phtml';
         }
     }
