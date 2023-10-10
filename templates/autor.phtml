@@ -2,14 +2,17 @@
 
 <ul class="list-group">
 <?php foreach($autores as $autor): ?>
+    <?php if($autor->Foto == NULL) {
+        $autor->Foto  = "https://www.elmostrador.cl/_templates/globals/img/default-avatar.jpg";
+    }?>
     <li class="list-group-item item-task">
         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src= "<?= $autor->Foto?>" class="card-img-top" alt="Foto de perfil">
             <div class="card-body">
-                <h5 class="card-title"><? $autor->nombre ?> <? $autor->apellido ?> </h5> <!-- aca van los nombres de los libros -->
-                <p class="card-text"><? $autor->edad ?></p>
-                <p class="card-text"><? $autor->nacionalidad ?></p>
-                <a href="autores/<? $autor->id ?>" class="btn btn-primary">Ver Listado de libros de este autor</a> <!-- aca van los links que manda a mirar a un este libro en especifico -->
+                <h5 class="card-title"><?= $autor->Nombre ?>  <?= $autor->Apellido ?></h5>
+                <p class="card-text"> Edad: <?= $autor->Edad ?> </p>
+                <p class="card-text">Nacionalidad: <?= $autor->Nacionalidad ?> </p>
+                <a href="autores/<?= $autor->id ?>" class="btn btn-primary">Ver Listado de libros de este autor</a> <!-- aca van los links que manda a mirar a un este libro en especifico -->
             </div>
         </div>
     </li>

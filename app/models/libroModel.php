@@ -19,4 +19,13 @@ class LibroModel {
 
         return $libros;
     }
+    function getLibro($id){
+        $query = $this->db->prepare('SELECT * FROM libros WHERE ID = ?');
+        $query->execute($id);
+
+        // $tasks es un arreglo de tareas
+        $libro = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $libro;
+    }
 }

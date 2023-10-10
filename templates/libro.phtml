@@ -1,21 +1,23 @@
 <?php require 'templates/header.phtml' ?>
 <ul class="list-group">
 <?php foreach($libros as $libro): ?>
+    <?php if($libro->Foto == NULL) {
+        $libro->Foto  = "https://papeleriatamayo.com/img/p/es-default-home_default.jpg";
+    }?>
     <li class="list-group-item item-task">
         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src= <?= $libro->Foto ?>  class="card-img-top" alt="Foto del producto">
             <div class="card-body">
-                <h5 class="card-title"><? $libro->nombre ?></h5> 
-                <p class="card-text"><? $libro->autor?></p> 
-                <p class="card-text"><? $libro->genero?></p> 
-                <p class="card-text"><? $libro->editorial?></p> 
-                <a href="libro/<? $libro->id ?>" class="btn btn-primary">Ver Libro</a> <!-- aca van los links que manda a mirar a un este libro en especifico -->
+                <h5 class="card-title"><?= $libro->Nombre ?></h5> 
+                <p class="card-text">Autor: <?= $libro->Autor?></p> 
+                <p class="card-text">Genero: <?= $libro->Genero?></p> 
+                <p class="card-text">Editorial: <?= $libro->Editorial?></p> 
+                <a href="libro/<?= $libro->id ?>" class="btn btn-primary">Ver Libro</a> <!-- aca van los links que manda a mirar a un este libro en especifico -->
             </div>
         </div>
     </li>
 <?php endforeach ?>
 </ul>
-
 
 <?php require 'templates/footer.phtml' ?>
 

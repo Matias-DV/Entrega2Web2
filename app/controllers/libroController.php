@@ -18,7 +18,9 @@ class LibroController {
          $this->view->showLibros($libros);
  
     }
-    public function showLibro($libro){
+    public function showLibro($id){
+        $libro = $this->model->getLibro($id);
 
+        $this->view->showLibro($libro);
    }
 }

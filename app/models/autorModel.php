@@ -15,7 +15,6 @@ class AutorModel {
         $query->execute();
 
         $autores = $query->fetchAll(PDO::FETCH_OBJ);
-
         return $autores;
     }
 }
