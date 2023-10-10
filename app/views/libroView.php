@@ -1,6 +1,6 @@
 <?php 
-    class libroView {
-        public function showLibro(){
+    class LibroView {
+        public function showLibros($libros){
             require 'templates/libro.phtml';
         }
     }
