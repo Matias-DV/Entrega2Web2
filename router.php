@@ -1,6 +1,6 @@
 <?php
-require_once ('./app/controllers/autorController.php');
-require_once ('./app/controllers/libroController.php');
+    require_once './app/controllers/autorController.php';
+    require_once './app/controllers/libroController.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -31,6 +31,6 @@ switch ($params[0]) {
             $controller->showAutor();
             break;
     default: 
-        echo 'hola';
+        echo '404';
         break;
 }

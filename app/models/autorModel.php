@@ -1,7 +1,5 @@
 <?php
 
-    echo"hola";
-
 class AutorModel {
     private $db;
 
@@ -13,12 +11,11 @@ class AutorModel {
      * Obtiene y devuelve de la base de datos todas las tareas.
      */
     function getAutor() {
-        $query = $this->db->prepare('SELECT * FROM libros');
+        $query = $this->db->prepare('SELECT * FROM autores');
         $query->execute();
 
-        // $tasks es un arreglo de tareas
-        $libros = $query->fetchAll(PDO::FETCH_OBJ);
+        $autores = $query->fetchAll(PDO::FETCH_OBJ);
 
-        return $libros;
+        return $autores;
     }
 }

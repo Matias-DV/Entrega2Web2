@@ -1,6 +1,6 @@
 <?php
-    require_once '/app/view/libro.view.php';
-    require_once '/app/models/libro.model.php';
+    require_once './app/views/libroView.php';
+    require_once './app/models/libroModel.php';
 
 class LibroController {
     private $model;
