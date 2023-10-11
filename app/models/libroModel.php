@@ -6,26 +6,50 @@ class LibroModel {
     function __construct() {
         $this->db = new PDO('mysql:host=localhost;dbname=db_biblioteca;charset=utf8', 'root', '');
     }
-
-    /**
-     * Obtiene y devuelve de la base de datos todas las tareas.
-     */
     function getLibros() {
         $query = $this->db->prepare('SELECT * FROM libros');
-        $query->execute();
+        $query-> execute();
 
-        // $tasks es un arreglo de tareas
-        $libros = $query->fetchAll(PDO::FETCH_OBJ);
+        $libros = $query-> fetchAll(PDO::FETCH_OBJ);
 
-        return $libros;
+        foreach ($libros as $libro) {
+            $query2 = $this->db->prepare('SELECT * FROM autores WHERE ID = ?');
+           
+            $query2-> execute([$libro -> Autor]);
+
+            $autores = $query2-> fetchAll(PDO::FETCH_OBJ);
+        }
+
+        $resultado = [$libros, $autores];
+        return $resultado;
     }
+
     function getLibro($id){
         $query = $this->db->prepare('SELECT * FROM libros WHERE ID = ?');
-        $query->execute($id);
+        $query->execute([$id]);
 
-        // $tasks es un arreglo de tareas
         $libro = $query->fetchAll(PDO::FETCH_OBJ);
+        $query2 = $this->db->prepare('SELECT * FROM autores WHERE ID = ?');
+           
+        $query2-> execute([$libro[0] -> Autor]);
 
-        return $libro;
+        $autor = $query2-> fetchAll(PDO::FETCH_OBJ);
+        $resultado = [$libro[0], $autor[0]];
+        return $resultado;
     }
+    
+    function getLibrosAutor($id){
+        $query = $this->db->prepare('SELECT * FROM libros WHERE Autor = ?');
+        $query->execute([$id]);
+
+        $libros = $query->fetchAll(PDO::FETCH_OBJ);
+        $query2 = $this->db->prepare('SELECT * FROM autores WHERE ID = ?');
+           
+        $query2-> execute([$id]);
+
+        $autores = $query2-> fetchAll(PDO::FETCH_OBJ);
+        $resultado = [$libros, $autores];
+        return $resultado;
+    }
+
 }

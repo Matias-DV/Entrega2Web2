@@ -1,0 +1,23 @@
+<?php require 'templates/header.phtml' ?>
+
+<ul class="list-group">
+<?php foreach($autores as $autor): ?>
+    <?php if($autor->Foto == NULL) {
+        $autor->Foto  = "https://www.elmostrador.cl/_templates/globals/img/default-avatar.jpg";
+    }?>
+    <li class="list-group-item item-task">
+        <div class="card" style="width: 18rem;">
+            <img src= "<?= $autor->Foto?>" class="card-img-top" alt="Foto de perfil">
+            <div class="card-body">
+                <h5 class="card-title"><?= $autor->Nombre ?>  <?= $autor->Apellido ?></h5>
+                <p class="card-text"> Edad: <?= $autor->Edad ?> </p>
+                <p class="card-text">Nacionalidad: <?= $autor->Nacionalidad ?> </p>
+                <a href="autores/<?=$autor->ID ?>" class="btn btn-primary">Ver Listado de libros de este autor</a> <!-- aca van los links que manda a mirar a un este libro en especifico -->
+            </div>
+        </div>
+    </li>
+<?php endforeach ?>
+</ul>
+
+
+<?php require 'templates/footer.phtml' ?>

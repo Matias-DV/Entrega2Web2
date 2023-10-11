@@ -10,11 +10,14 @@
             $this->model = new AutorModel();
             $this->view = new AutorView();
         }
-        public function showAutor(){
-             // obtengo tareas del controlador
-             $autores = $this->model->getAutor();
+        public function showAutores(){
+            $autores = $this->model->getAutores();
             
-             // muestro las tareas desde la vista
-             $this->view->showAutor($autores);
+             $this->view->showAutores($autores);
         }
+        public function showAutor($id){
+            $autor = $this->model->getAutor($id);
+           
+            $this->view->showAutor($autor);
+       }
     }

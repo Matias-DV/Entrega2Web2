@@ -1,7 +1,7 @@
 <?php
     require_once './app/views/libroView.php';
     require_once './app/models/libroModel.php';
-
+    
 class LibroController {
     private $model;
     private $view;
@@ -11,16 +11,18 @@ class LibroController {
         $this->view = new LibroView();
     }
     public function showLibros(){
-         // obtengo tareas del controlador
-         $libros = $this->model->getLibros();
+         $resultado = $this->model->getLibros();
         
-         // muestro las tareas desde la vista
-         $this->view->showLibros($libros);
- 
+         $this->view->showLibros($resultado);
     }
     public function showLibro($id){
         $libro = $this->model->getLibro($id);
 
         $this->view->showLibro($libro);
+   }
+   public function showLibrosAutor($id){
+        $libro = $this->model->getLibrosAutor($id);
+
+        $this->view->showLibros($libro);
    }
 }

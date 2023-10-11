@@ -22,13 +22,15 @@ switch ($params[0]) {
             $controller->showLibros();
             break;
     case 'autores':
-        $controller = new AutorController();
+        
         if (isset($params[1])){
-            $controller->showAutor($params[1]);
+            $controller = new LibroController();
+            $controller->showLibrosAutor($params[1]);
             break;
         }
         else
-            $controller->showAutor();
+            $controller = new AutorController();
+            $controller->showAutores();
             break;
     default: 
         echo '404';
