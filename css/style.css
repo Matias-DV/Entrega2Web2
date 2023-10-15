@@ -1,0 +1,23 @@
+body{
+    background-color: aquamarine;
+}
+
+#container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+#imgError {
+    margin-left: 25%;
+    height: 700px;
+    width: auto;
+}
+
+#h1_error {
+    color: brown;
+   text-align: center;
+}
+
+#p_error {
+    text-align: center;
+}

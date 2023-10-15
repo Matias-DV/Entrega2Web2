@@ -1,11 +1,8 @@
 <?php
+require_once 'app/models/model.php';
 
-class LibroModel {
-    private $db;
+class LibroModel  extends Model {
 
-    function __construct() {
-        $this->db = new PDO('mysql:host=localhost;dbname=db_biblioteca;charset=utf8', 'root', '');
-    }
     function getLibros() {
         $query = $this->db->prepare('SELECT * FROM libros');
         $query-> execute();
