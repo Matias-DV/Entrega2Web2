@@ -23,7 +23,7 @@
     <td><img class="imgTabla" src= <?= $libros[$i]->Foto ?> alt="Foto del producto"></td>
     <td><?= $libros[$i]->Nombre ?></td>
     <td><?= $libros[$i]->Genero ?></td>
-    <td><?= $libros[$i]->Autor ?></td>
+    <td><?= $autores[$i]->Nombre ?> <?= $autores[$i]->Apellido ?></td>
     <td><?= $libros[$i]->Editorial ?></td>
     <td><button type="button" class="btn btn-danger">borrar</button><button type="button" class="btn btn-warning" >editar</button></td>
     </tr>

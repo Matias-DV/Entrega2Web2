@@ -19,7 +19,6 @@
 }
 
 td img {
-    display: none;
-    height: 50px;
-    border: brown solid 2px;
+    height: 123px;
+    border: black solid 1px;
 }

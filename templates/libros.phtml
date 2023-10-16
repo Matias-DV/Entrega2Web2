@@ -10,7 +10,8 @@
         <div class="card" style="width: 18rem;">
             <img src= <?= $libros[$i]->Foto ?>  class="card-img-top" alt="Foto del producto">
             <div class="card-body">
-                <h5 class="card-title"><?= $libros[$i]->Nombre ?></h5> 
+                <h5 class="card-title"><?= $libros[$i]->Nombre ?></h5>
+                <h5 class="card-title"><?= $autores[ $libros -> Autor ]-> Nombre ?></h5> 
                 <a href="libros/<?=$libros[$i]->ID ?>" class="btn btn-primary">Ver Libro</a> <!-- aca van los links que manda a mirar a un este libro en especifico -->
             </div>
         </div>
