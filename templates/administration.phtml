@@ -1,0 +1,44 @@
+<?php require 'templates/header.phtml' ?>
+
+<h1> Libros </h1>
+
+<?php $libros = $resultado[0]; ?>
+<?php $autores = $resultado[1]; ?>
+
+<table class="table">
+  <thead class="table-dark">
+    <th>Foto</th>
+    <th>Nombre</th>
+    <th>Genero</th>
+    <th>Autor</th>
+    <th>Editorial</th>
+    <th></th>
+  </thead>
+  <tbody>
+  <?php for ($i=0; $i < sizeof($libros); $i++): ?>
+    <?php if($libros[$i]->Foto == NULL) {
+        $libros[$i]->Foto  = "https://papeleriatamayo.com/img/p/es-default-home_default.jpg";
+    }?>
+    <tr>
+    <td><img class="imgTabla" src= <?= $libros[$i]->Foto ?> alt="Foto del producto"></td>
+    <td><?= $libros[$i]->Nombre ?></td>
+    <td><?= $libros[$i]->Genero ?></td>
+    <td><?= $libros[$i]->Autor ?></td>
+    <td><?= $libros[$i]->Editorial ?></td>
+    <td><button type="button" class="btn btn-danger">borrar</button><button type="button" class="btn btn-warning" >editar</button></td>
+    </tr>
+<?php endfor ?>
+    
+  </tbody>
+</table>
+
+<h1> Autores </h1>
+
+<table class="table">
+  <thead class="table-dark">
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<?php require 'templates/footer.phtml' ?>

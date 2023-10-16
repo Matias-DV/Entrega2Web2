@@ -1,7 +1,3 @@
-body{
-    background-color: aquamarine;
-}
-
 #container {
     height: 100%;
     display: flex;
@@ -20,4 +16,10 @@ body{
 
 #p_error {
     text-align: center;
+}
+
+td img {
+    display: none;
+    height: 50px;
+    border: brown solid 2px;
 }

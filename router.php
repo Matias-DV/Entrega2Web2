@@ -3,8 +3,12 @@
     require_once './app/controllers/libroController.php';
     require_once './app/controllers/loginController.php';
     require_once './app/controllers/errorController.php';
+    require_once './app/controllers/adminController.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+
+//Para mantener la session iniciada, antes de manejar los datos
+AuthHelper::init();
 
 $action = 'libros';
 if (!empty( $_GET['action'])) {
@@ -13,7 +17,17 @@ if (!empty( $_GET['action'])) {
 
 $params = explode('/', $action);
 
-switch ($params[0]) { 
+switch ($params[0]) {
+    case 'administration':
+        if(isset($_SESSION['Usuario'])){
+            $controller = new AdminController();
+            $controller->showAdmin();
+            break;
+        }else{
+            $controller = new LoginController();
+            $controller->showLogin(); 
+            break; 
+        }
     case 'login':
         $controller = new LoginController();
         $controller->showLogin(); 
