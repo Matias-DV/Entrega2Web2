@@ -1,0 +1,37 @@
+<?php require 'templates/header.phtml' ?>
+
+<ul class="list-group">
+<?php $libro = $libro[0];?>
+<?php if($libro->Foto == NULL) {
+        $libro->Foto  = "https://papeleriatamayo.com/img/p/es-default-home_default.jpg";
+    }?>
+    <li class="list-group-item item-task">
+        <div class="card" style="width: 18rem;">
+            <img src= <?= $libro->Foto ?>  class="card-img-top" alt="Foto del producto">
+            <div class="card-body">
+                <h5 class="card-title"><?= $libro->Nombre ?></h5> 
+                <p class="card-text">Autor: <?= $libro -> Autor ?></p> 
+                <p class="card-text">Genero: <?= $libro->Genero?></p> 
+                <p class="card-text">Editorial: <?= $libro->Editorial?></p> 
+            </div>
+        </div>
+    </li>
+</ul>
+<form action="administration/editLibroAceptado/<?=$libro->ID?>" method="POST" >
+  <label> Foto </label>
+  <input value="<?= $libro->Foto?>"type="text" name="Foto"/>
+  <label> Nombre </label>
+  <input  value="<?=$libro->Nombre ?>" type="text" name="Nombre"/>
+  <label> Genero </label>
+  <input value="<?= $libro->Genero?>" type="text" name="Genero"/>
+  <label> Autor </label>
+  <select name="Autor">
+  <?php for ($i=0; $i < sizeof($autores); $i++): ?>
+    <option value="<?= $autores[$i]->ID?>"><?= $autores[$i]->Nombre . " " . $autores[$i]->Apellido?></option>
+    <?php endfor ?>
+  </select>
+  <label> Editorial </label>
+  <input value="<?= $libro->Editorial?>" type="text"name="Editorial"/>
+  <button>Editar</button>
+</form>
+<?php require 'templates/footer.phtml' ?>

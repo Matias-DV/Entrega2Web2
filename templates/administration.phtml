@@ -2,9 +2,6 @@
 
 <h1> Libros </h1>
 
-<?php $libros = $resultado[0]; ?>
-<?php $autores = $resultado[1]; ?>
-
 <table class="table">
   <thead class="table-dark">
     <th>Foto</th>
@@ -23,22 +20,72 @@
     <td><img class="imgTabla" src= <?= $libros[$i]->Foto ?> alt="Foto del producto"></td>
     <td><?= $libros[$i]->Nombre ?></td>
     <td><?= $libros[$i]->Genero ?></td>
-    <td><?= $autores[$i]->Nombre ?> <?= $autores[$i]->Apellido ?></td>
+    <td><?= $libros[$i]->Autor ?></td>
     <td><?= $libros[$i]->Editorial ?></td>
-    <td><button type="button" class="btn btn-danger">borrar</button><button type="button" class="btn btn-warning" >editar</button></td>
+    <td><a href="administration/borrarLibro/<?= $libros[$i]->ID?>">Borrar</a> <a href="administration/editarLibro/<?=$libros[$i]->ID?>" class="btn btn-warning" id="">Editar</a></td>
     </tr>
 <?php endfor ?>
-    
   </tbody>
 </table>
+
+<form action="agregarLibro" method="POST" >
+  <label> Foto </label>
+  <input type="text" name="Foto"/>
+  <label> Nombre </label>
+  <input type="text" name="Nombre"/>
+  <label> Genero </label>
+  <input type="text"name="Genero"/>
+  <label> Autor </label>
+  <select name="Autor">
+  <?php for ($i=0; $i < sizeof($autores); $i++): ?>
+    <option value="<?= $autores[$i]->ID?>"><?= $autores[$i]->Nombre . " " . $autores[$i]->Apellido?></option>
+<?php endfor ?>
+  </select>
+  <label> Editorial </label>
+  <input type="text"name="Editorial"/>
+  <button>Agregar</button>
+</form>
 
 <h1> Autores </h1>
 
 <table class="table">
   <thead class="table-dark">
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Edad</th>
+    <th>Nacionalidad</th>
+    <th>Foto</th>
+    <th></th>
   </thead>
   <tbody>
+  <?php for ($i=0; $i < sizeof($autores); $i++): ?>
+    <?php if($autores[$i]->Foto == NULL) {
+        $autores[$i]->Foto  = "https://www.elmostrador.cl/_templates/globals/img/default-avatar.jpg";
+    }?>
+    <tr>
+    <td><img class="imgTabla" src= <?= $autores[$i]->Foto ?> alt="Foto del autor"></td>
+    <td><?= $autores[$i]->Nombre ?></td>
+    <td><?= $autores[$i]->Apellido ?></td>
+    <td><?= $autores[$i]->Edad?></td>
+    <td><?= $autores[$i]->Nacionalidad ?></td>
+    <td><a href="administration/borrarAutor/<?= $autores[$i]->ID?>">Borrar</a> <a href="administration/editarAutor/<?=$autores[$i]->ID?>" class="btn btn-warning" id="">Editar</a></td>
+    </tr>
+<?php endfor ?>
   </tbody>
 </table>
+
+<form action="agregarAutor" method="POST" >
+  <label> Foto </label>
+  <input type="text" name="Foto"/>
+  <label> Nombre </label>
+  <input type="text" name="Nombre"/>
+  <label> Apellido </label>
+  <input type="text"name="Apellido"/>
+  <label> Edad </label>
+  <input type="number"name="Edad"/>
+  <label> Nacionalidad </label>
+  <input type="text"name="Nacionalidad"/>
+  <button>Agregar</button>
+</form>
 
 <?php require 'templates/footer.phtml' ?>

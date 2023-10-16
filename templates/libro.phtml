@@ -1,8 +1,7 @@
 <?php require 'templates/header.phtml' ?>
 <ul class="list-group">
-<?php $libro = $resultado[0]; ?>
-<?php $autor = $resultado[1]; ?>
-    <?php if($libro->Foto == NULL) {
+    <?php $libro = $libro[0];?>
+<?php if($libro->Foto == NULL) {
         $libro->Foto  = "https://papeleriatamayo.com/img/p/es-default-home_default.jpg";
     }?>
     <li class="list-group-item item-task">
@@ -10,7 +9,7 @@
             <img src= <?= $libro->Foto ?>  class="card-img-top" alt="Foto del producto">
             <div class="card-body">
                 <h5 class="card-title"><?= $libro->Nombre ?></h5> 
-                <p class="card-text">Autor: <?= $autor->Nombre ?> <?= $autor->Apellido ?></p> 
+                <p class="card-text">Autor: <?= $libro -> Autor ?></p> 
                 <p class="card-text">Genero: <?= $libro->Genero?></p> 
                 <p class="card-text">Editorial: <?= $libro->Editorial?></p> 
             </div>

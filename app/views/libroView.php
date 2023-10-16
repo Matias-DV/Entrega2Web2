@@ -1,10 +1,10 @@
 <?php 
     class LibroView {
-        public function showLibros($resultado){
+        public function showLibros($libros){
             require 'templates/libros.phtml';
         }
 
-        public function showLibro($resultado){
+        public function showLibro($libro){
             require 'templates/libro.phtml';
         }
     }

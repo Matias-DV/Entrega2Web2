@@ -1,17 +1,15 @@
-<?php require 'templates/header.phtml' ?>
+<?php require 'templates/header.phtml'?>
 <ul class="list-group">
-<?php $libros = $resultado[0]; ?>
-<?php $autores = $resultado[1]; ?>
 <?php for ($i=0; $i < sizeof($libros); $i++): ?>
-    <?php if($libros[$i]->Foto == NULL) {
-        $libros[$i]->Foto  = "https://papeleriatamayo.com/img/p/es-default-home_default.jpg";
+    <?php if($libros[$i]-> Foto == NULL) {
+        $libros[$i]-> Foto  = "https://papeleriatamayo.com/img/p/es-default-home_default.jpg";
     }?>
     <li class="list-group-item item-task">
         <div class="card" style="width: 18rem;">
             <img src= <?= $libros[$i]->Foto ?>  class="card-img-top" alt="Foto del producto">
             <div class="card-body">
                 <h5 class="card-title"><?= $libros[$i]->Nombre ?></h5>
-                <h5 class="card-title"><?= $autores[ $libros -> Autor ]-> Nombre ?></h5> 
+                <h5 class="card-title"><?= $libros[$i]->Autor ?></h5> 
                 <a href="libros/<?=$libros[$i]->ID ?>" class="btn btn-primary">Ver Libro</a> <!-- aca van los links que manda a mirar a un este libro en especifico -->
             </div>
         </div>

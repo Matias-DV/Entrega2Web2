@@ -1,0 +1,31 @@
+<?php require 'templates/header.phtml' ?>
+<?php $autor = $autor[0];?>
+<ul class="list-group">
+    <?php if($autor->Foto == NULL) {
+        $autor->Foto  = "https://www.elmostrador.cl/_templates/globals/img/default-avatar.jpg";
+    }?>
+    <li class="list-group-item item-task">
+        <div class="card" style="width: 18rem;">
+            <img src= "<?= $autor->Foto?>" class="card-img-top" alt="Foto de perfil">
+            <div class="card-body">
+                <h5 class="card-title"><?= $autor->Nombre ?>  <?= $autor->Apellido ?></h5>
+                <p class="card-text"> Edad: <?= $autor->Edad ?> </p>
+                <p class="card-text">Nacionalidad: <?= $autor->Nacionalidad ?> </p>
+            </div>
+        </div>
+    </li>
+</ul>
+<form action="administration/editAutorAceptado/<?=$autor->ID?>" method="POST" >
+  <label> Foto </label>
+  <input value="<?= $autor->Foto?>"type="text" name="Foto"/>
+  <label> Nombre </label>
+  <input  value="<?=$autor->Nombre ?>" type="text" name="Nombre"/>
+  <label> Apellido </label>
+  <input value="<?= $autor->Apellido?>" type="text" name="Apellido"/>
+  <label> Edad </label>
+  <input value="<?= $autor->Edad?>" type="number"name="Edad"/>
+  <label> Nacionalidad </label>
+  <input value="<?= $autor->Nacionalidad?>" type="text"name="Nacionalidad"/>
+  <button>Editar</button>
+</form>
+<?php require 'templates/footer.phtml' ?>

@@ -70,8 +70,7 @@ require_once 'config.php';
                   -- Volcado de datos para la tabla `usuarios`
                   --
                   
-                  INSERT INTO `usuarios` (`ID`, `Password`, `User`) VALUES
-                  (1, '$2a$12\$XGQ84TQbuo7Y5UrFLF92SuVohzeZodL1r0MSYc4rB6g7SMZlFKvyC', 'webadmin');
+                  
                   
                   --
                   -- Índices para tablas volcadas
@@ -130,7 +129,13 @@ require_once 'config.php';
                   COMMIT;
                 END;
                 $this->db->query($sql);
+                this->admin();
             }
             
+        }
+        function admin(){
+          $query = $this->db->prepare('INSERT INTO `usuarios` (`ID`, `Password`, `User`) VALUES
+          (1, "$2a$12$XGQ84TQbuo7Y5UrFLF92SuVohzeZodL1r0MSYc4rB6g7SMZlFKvyC", "webadmin")');
+          $query-> execute();
         }
     }

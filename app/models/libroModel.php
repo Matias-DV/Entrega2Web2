@@ -14,11 +14,12 @@ class LibroModel  extends Model {
            
             $query2-> execute([$libro -> Autor]);
 
-            $autores = $query2-> fetchAll(PDO::FETCH_OBJ);
+            $autor = $query2-> fetchAll(PDO::FETCH_OBJ);
+            //Donde esta la ID del autor en libro, lo remplazamos por su nombre y apellido ,ya que la clave foranea no la queremos
+            $libro -> Autor = $autor[0]->Nombre . " " . $autor[0]->Apellido;
         }
 
-        $resultado = [$libros, $autores];
-        return $resultado;
+        return $libros;
     }
 
     function getLibro($id){
@@ -31,22 +32,42 @@ class LibroModel  extends Model {
         $query2-> execute([$libro[0] -> Autor]);
 
         $autor = $query2-> fetchAll(PDO::FETCH_OBJ);
-        $resultado = [$libro[0], $autor[0]];
-        return $resultado;
+        //Donde esta la ID del autor en libro, lo remplazamos por su nombre y apellido ,ya que la clave foranea no la queremos
+        $libro[0] -> Autor = $autor[0]-> Nombre . " " . $autor[0]->Apellido;
+                
+        return $libro;
     }
     
     function getLibrosAutor($id){
         $query = $this->db->prepare('SELECT * FROM libros WHERE Autor = ?');
         $query->execute([$id]);
-
         $libros = $query->fetchAll(PDO::FETCH_OBJ);
         $query2 = $this->db->prepare('SELECT * FROM autores WHERE ID = ?');
-           
+        
         $query2-> execute([$id]);
 
-        $autores = $query2-> fetchAll(PDO::FETCH_OBJ);
-        $resultado = [$libros, $autores];
-        return $resultado;
+        $autor = $query2-> fetchAll(PDO::FETCH_OBJ);
+        foreach ($libros as $libro) {
+            $libro -> Autor = $autor[0]-> Nombre . " " . $autor[0]->Apellido;
+        }
+        return $libros;
     }
-
+    
+    function removeLibro($id){
+        $query = $this->db->prepare("DELETE FROM libros WHERE `libros`.`ID` = ?");
+        $query-> execute([$id]); 
+        header('Location: ' . BASE_URL . 'administration');
+    }
+    
+    function addLibro(){
+        $query = $this->db->prepare('INSERT INTO `libros` (`Nombre`, `Genero`, `Autor`, `Editorial`, `Foto`) VALUES
+        (?, ? , ? , ? , ?)');
+        $query-> execute([$_POST["Nombre"],$_POST["Genero"],$_POST["Autor"],$_POST["Editorial"],$_POST["Foto"]]); 
+        header('Location: ' . BASE_URL . 'administration');
+    }
+    function editarLibroAceptado($id){
+        $query = $this->db->prepare("UPDATE `libros` SET Nombre = ?, Genero = ?, Autor = ?, Editorial = ?, Foto = ? WHERE `libros`.`ID` = ?");
+        $query->execute([$_POST["Nombre"], $_POST["Genero"], $_POST["Autor"], $_POST["Editorial"], $_POST["Foto"], $id]);
+        header('Location: ' . BASE_URL . 'administration');
+    }
 }
