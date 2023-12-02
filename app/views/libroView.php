@@ -7,4 +7,7 @@
         public function showLibro($libro){
             require 'templates/libro.phtml';
         }
+        public function editarLibro($libro, $autores, $error){
+            require 'templates/editarLibro.phtml';
+        }
     }

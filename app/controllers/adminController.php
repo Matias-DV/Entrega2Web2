@@ -1,49 +1,30 @@
 <?php 
     require_once './app/views/adminView.php';
-    require_once './app/models/libroModel.php';
-    require_once './app/models/autorModel.php';
+    require_once './app/controllers/libroController.php';
+    require_once './app/controllers/autorController.php';
+    require_once './app/controllers/loginController.php';
     
+    //acomodar y delegar todo lo que tenga que ver con libro y autor a sus respectivos controllers y model
+    //aca solo se maneja administracion.
     
     class AdminController {
         private $view;
-        private $libroModel;
-        private $autorModel;
+        private $libroController;
+        private $autorController;
+        private $loginController;
         public function __construct() { 
             $this->view = new AdminView();
-            $this->libroModel = new LibroModel();
-            $this->autorModel = new AutorModel();
-            
+            $this->libroController = new LibroController();
+            $this->autorController = new AutorController();
+            $this->loginController = new LoginController();
         }
-        public function showAdmin(){
-            $libros = $this->libroModel->getLibros();
-            $autores = $this->autorModel->getAutores();
-            $this->view->showAdmin($libros, $autores);
-        }
-        public function agregarLibro(){
-            $this->libroModel->addLibro();
-        }
-        public function agregarAutor(){
-            $this->autorModel->addAutor();
-        }
-        public function borrarLibro($id){
-            $this->libroModel->removeLibro($id);
-        }
-        public function borrarAutor($id){
-            $this->autorModel->removeAutor($id);
-        }
-        public function editarLibro($id){
-            $libro = $this->libroModel->getLibro($id);
-            $autores = $this->autorModel->getAutores();
-            $this->view->editarLibro($libro, $autores);
-        }
-        public function editarAutor($id){
-            $autor = $this->autorModel->getAutor($id);
-            $this->view->editarAutor($autor);
-        }
-        public function editarLibroAceptado($id){
-            $this->libroModel->editarLibroAceptado($id);
-        }
-        public function editarAutorAceptado($id){
-            $this->autorModel->editarAutorAceptado($id);
+        public function showAdmin($error = null){
+            if(isset($_SESSION['Usuario'])){
+                $libros = $this -> libroController -> getLibros();
+                $autores = $this -> autorController -> getAutores();
+                $this -> view -> showAdmin($libros, $autores,$error);
+            }else{
+                $this -> loginController -> showLogin(); 
+            }
         }
     }

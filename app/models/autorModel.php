@@ -21,23 +21,21 @@ class AutorModel  extends Model {
         $resultado = [$autor[0], $libros];
         return $resultado;
     }
-
-    function addAutor(){
+    
+    function addAutor($nombre,$apellido,$edad,$nacionalidad,$foto){
         $query = $this->db->prepare('INSERT INTO `autores` (`Nombre`, `Apellido`, `Edad`, `Nacionalidad`, `Foto`) VALUES
         (?, ? , ? , ? , ?)');
-        $query-> execute([$_POST["Nombre"],$_POST["Apellido"],$_POST["Edad"],$_POST["Nacionalidad"],$_POST["Foto"]]); 
-        header('Location: ' . BASE_URL . 'administration');
+        $query-> execute([$nombre,$apellido,$edad,$nacionalidad,$foto]); 
+        
     }
 
     function removeAutor($id){
         $query = $this->db->prepare("DELETE FROM autores WHERE `autores`.`ID` = ?");
         $query-> execute([$id]); 
-        header('Location: ' . BASE_URL . 'administration');
     }
-
-    function editarAutorAceptado($id){
+    
+    function editarAutorAceptado($id,$nombre,$apellido,$edad,$nacionalidad,$foto){
         $query = $this->db->prepare("UPDATE `autores` SET Nombre = ?, Apellido = ?, Edad = ?, Nacionalidad = ?, Foto = ? WHERE `autores`.`ID` = ?");
-        $query->execute([$_POST["Nombre"], $_POST["Apellido"], $_POST["Edad"], $_POST["Nacionalidad"], $_POST["Foto"], $id]);
-        header('Location: ' . BASE_URL . 'administration');
+        $query->execute([$nombre, $apellido, $edad, $nacionalidad, $foto, $id]);
     }
 }

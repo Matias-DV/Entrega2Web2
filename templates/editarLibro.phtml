@@ -34,4 +34,9 @@
   <input value="<?= $libro->Editorial?>" type="text"name="Editorial"/>
   <button>Editar</button>
 </form>
+<?php if($error!=null){?>
+<p><?=$error?></p>
+<?php
+}
+?>
 <?php require 'templates/footer.phtml' ?>

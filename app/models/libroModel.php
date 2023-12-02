@@ -53,21 +53,20 @@ class LibroModel  extends Model {
         return $libros;
     }
     
+    //Header no va aca acomodar
     function removeLibro($id){
         $query = $this->db->prepare("DELETE FROM libros WHERE `libros`.`ID` = ?");
         $query-> execute([$id]); 
-        header('Location: ' . BASE_URL . 'administration');
     }
     
-    function addLibro(){
+    function addLibro($nombre,$genero,$autor,$editorial,$foto){
         $query = $this->db->prepare('INSERT INTO `libros` (`Nombre`, `Genero`, `Autor`, `Editorial`, `Foto`) VALUES
         (?, ? , ? , ? , ?)');
-        $query-> execute([$_POST["Nombre"],$_POST["Genero"],$_POST["Autor"],$_POST["Editorial"],$_POST["Foto"]]); 
-        header('Location: ' . BASE_URL . 'administration');
+        $query-> execute([$nombre,$genero,$autor,$editorial,$foto]); 
     }
-    function editarLibroAceptado($id){
+    
+    function editarLibroAceptado($id,$nombre,$genero,$autor,$editorial,$foto){
         $query = $this->db->prepare("UPDATE `libros` SET Nombre = ?, Genero = ?, Autor = ?, Editorial = ?, Foto = ? WHERE `libros`.`ID` = ?");
-        $query->execute([$_POST["Nombre"], $_POST["Genero"], $_POST["Autor"], $_POST["Editorial"], $_POST["Foto"], $id]);
-        header('Location: ' . BASE_URL . 'administration');
+        $query->execute([$nombre, $genero, $autor, $editorial, $foto, $id]);
     }
 }
